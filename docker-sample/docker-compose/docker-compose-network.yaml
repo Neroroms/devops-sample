@@ -1,0 +1,23 @@
+version: "3"
+services: 
+  server:
+    image: streamtank/print-log-only
+    networks: 
+      test-network:
+        ipv4_address: 172.20.0.2
+  curl:
+    build: 
+      context: .
+      dockerfile: ../Dockerfile
+    environment: 
+      - SERVER_URL=172.20.0.2
+    entrypoint: "bash -c 'curl $$SERVER_URL'"
+    depends_on: 
+      - server
+    networks: 
+      test-network:  
+networks:
+  test-network:
+    ipam: 
+      config: 
+        - subnet: 172.20.0.0/24
