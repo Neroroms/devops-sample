@@ -1,0 +1,10 @@
+version: "3"
+services:
+  mongo:
+    image: mongo:4.4.1
+  nginx:
+    image: nginx:1.19.2
+  curl:
+    build:
+      context: .
+      dockerfile: ../Dockerfile
