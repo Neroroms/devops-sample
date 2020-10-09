@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-single-pod
+  namespace: sample-kube
+  labels:
+    name: my-single-pod
+spec:
+  containers:
+  - name: my-single-pod
+    image: streamtank/print-log-only
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+    ports:
+      - containerPort: 80

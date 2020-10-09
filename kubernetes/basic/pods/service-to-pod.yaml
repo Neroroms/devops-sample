@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-pod-service
+  namespace: sample-kube
+spec:
+  selector:
+    app: my-pod-selector
+  ports:
+  - port: 80
+    targetPort: 80
