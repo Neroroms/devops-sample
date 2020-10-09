@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-confuse-nginx
+  namespace: sample-kube
+  labels:
+    app: my-pod-selector
+    name: my-confuse-nginx
+spec:
+  containers:
+  - name: my-confuse-nginx
+    image: nginx:1.9.2
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+    ports:
+      - containerPort: 80
