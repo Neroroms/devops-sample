@@ -8,7 +8,8 @@ metadata:
 spec:
   containers:
   - name: my-single-pod
-    image: streamtank/print-log-only
+    image: streamtank/print-log-only:latest
+    imagePullPolicy: Always
     resources:
       limits:
         memory: "128Mi"
