@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-init-container-pod
+  namespace: sample-kube
+  labels:
+    name: my-init-container-pod
+spec:
+  initContainers:
+    - name: my-echo
+      image: ubuntu:18.04
+      command:
+        - "echo"
+        - "'bye'"
+  containers:
+    - name: my-nginx
+      image: nginx:1.9.0
+      resources:
+        limits:
+          memory: "32Mi"
+          cpu: "150m"
+      ports:
+        - containerPort: 80

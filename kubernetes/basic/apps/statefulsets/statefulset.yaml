@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: my-statefulset
+  namespace: sample-kube
+spec:
+  serviceName: my-statefulset-service
+  replicas: 3
+  selector:
+    matchLabels:
+      app: my-statefulset
+  template:
+    metadata:
+      labels:
+        app: my-statefulset
+    spec:
+      containers:
+      - name: my-statefulset
+        image: streamtank/devops-samples:gethostname
+        imagePullPolicy: Always
+        resources:
+          limits:
+            memory: "32Mi"
+            cpu: "100m"
+        ports:
+        - containerPort: 3000
+  updateStrategy:
+    rollingUpdate:
+      partition: 0

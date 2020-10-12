@@ -16,15 +16,10 @@ spec:
         cpu: "500m"
     ports:
       - containerPort: 80
-  - name: my-curl-pod
-    image: ubuntu:18.04
+  - name: my-curl
+    image: streamtank/devops-samples:ubuntu-with-curl
     tty: true
     resources:
       limits:
-        cpu: "500m"
-        memory: "128Mi"
-    command:
-      - "bash"
-      - "-c"
-      - |
-        apt-get update && apt-get install -y curl && bash
+        memory: "32Mi"
+        cpu: "100m"
