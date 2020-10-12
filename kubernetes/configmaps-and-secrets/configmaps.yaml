@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: my-configmap-env
+  namespace: sample-kube
+data:
+  env-1: i-have-a-pen
+  env-2: i-have-a-apple
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: my-configmap-file
+  namespace: sample-kube
+data:
+  my-config-file:
+    ummm
+    Apple pen
+    

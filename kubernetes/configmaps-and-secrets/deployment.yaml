@@ -1,0 +1,61 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-configmap-app
+  namespace: sample-kube
+spec:
+  selector:
+    matchLabels:
+      app: my-configmap-app
+  template:
+    metadata:
+      labels:
+        app: my-configmap-app
+    spec:
+      containers:
+        - name: my-configmap-app
+          image: ubuntu:18.04
+          tty: true
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          env:
+            - name: ENV_1
+              valueFrom:
+                configMapKeyRef:
+                  key: env-1
+                  name: my-configmap-env
+            - name: ENV_2
+              valueFrom:
+                configMapKeyRef:
+                  key: env-2
+                  name: my-configmap-env
+            - name: SECRET_ENV_1
+              valueFrom:
+                secretKeyRef:
+                  key: secret-env-1
+                  name: my-secrets-env
+            - name: SECRET_ENV_2
+              valueFrom:
+                secretKeyRef:
+                  key: secret-env-2
+                  name: my-secrets-env
+          volumeMounts:
+            - mountPath: /usr/src/app/configmap
+              name: configmap-file
+            - mountPath: /usr/src/app/secrets
+              name: secret-file
+      volumes:
+        - name: configmap-file
+          configMap:
+            name: my-configmap-file
+            items:
+              - key: my-config-file
+                path: my-config-file.txt
+        - name: secret-file
+          secret:
+            secretName: my-secrets-file
+            items:
+              - key: my-secret-file
+                path: my-secret-file.txt
