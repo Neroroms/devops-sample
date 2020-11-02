@@ -4,8 +4,8 @@ metadata:
   name: my-single-pod
   namespace: sample-kube
   labels:
-    name: my-single-pod
     app: my-pod-selector
+    name: my-single-pod
 spec:
   containers:
   - name: my-single-pod
