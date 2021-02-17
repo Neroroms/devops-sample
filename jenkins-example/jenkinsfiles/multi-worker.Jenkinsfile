@@ -4,18 +4,16 @@ node("worker-1") {
   }
 
   stage("Stash file") {
-    stash(includes: '*', name: 'project')
+    stash(includes: '**', name: 'project')
   }
 
   cleanWs()
 }
 
 node("dind") {
-  sh "ls"
-
-  unstash('project')
-
-  sh "ls"
+  stage("Unstash file") {
+    unstash('project')
+  }
 
   cleanWs()
 }
