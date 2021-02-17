@@ -4,6 +4,15 @@ node("worker-1") {
   }
 
   stage("Stash file") {
+    sh "ls"
+
+    try {
+      sh "node --version"
+    }
+    catch (err) {
+      print "no node."
+    }
+
     stash(includes: '**', name: 'project')
   }
 
@@ -13,11 +22,14 @@ node("worker-1") {
 node("dind") {
   stage("Unstash file") {
     unstash('project')
-  }
 
-  stage("Build docker images") {
-    dir("jenkins-example/dockerfiles/ubuntu-worker/") {
-      sh "docker build -f ubuntu-worker.Dockerfile -t test:latest ."
+    sh "ls"
+
+    try {
+      sh "node --version"
+    }
+    catch (err) {
+      print "no node"
     }
   }
 
