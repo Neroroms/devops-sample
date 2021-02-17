@@ -1,4 +1,4 @@
-node("worker-1") {
+node("ubuntu-worker") {
   stage("checkout with worker 1") {
     checkout([$class: 'GitSCM', branches: [[name: GITHUB_BRANCH]], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'sb2', url: 'git@github.com:Neroroms/devops-sample.git']]])
   }
@@ -19,7 +19,7 @@ node("worker-1") {
   cleanWs()
 }
 
-node("dind") {
+node("node-worker") {
   stage("Unstash file") {
     unstash('project')
 
