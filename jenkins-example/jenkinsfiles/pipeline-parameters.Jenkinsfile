@@ -15,5 +15,11 @@ node("dind") {
     unstash('project')
   }
 
+  stage("Build docker images") {
+    dir("jenkins-example/dockerfiles/") {
+      sh "docker build -f ubuntu-worker.Dockerfile -t test:latest ."
+    }
+  }
+
   cleanWs()
 }
