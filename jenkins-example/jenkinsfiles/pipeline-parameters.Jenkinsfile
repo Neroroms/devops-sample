@@ -16,7 +16,7 @@ node("dind") {
   }
 
   stage("Build docker images") {
-    dir("jenkins-example/dockerfiles/") {
+    dir("jenkins-example/dockerfiles/ubuntu-worker/") {
       sh "docker build -f ubuntu-worker.Dockerfile -t test:latest ."
     }
   }
