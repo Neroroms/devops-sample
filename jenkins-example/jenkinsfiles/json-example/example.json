@@ -1,0 +1,21 @@
+{
+  "objectName": "example",
+  "object1": {
+    "data": "1"
+  },
+  "object2": {
+    "data": "2",
+    "secondaryData": {
+      "critical": "no",
+      "secret": "no"
+    }
+  },
+  "object3": {
+    "data": "3",
+    "listData": [
+      "1",
+      "3",
+      "2"
+    ]
+  }
+}
