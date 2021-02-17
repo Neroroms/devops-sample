@@ -1,0 +1,31 @@
+version: "3"
+services:
+  jenkins:
+    image: jenkins/jenkins:2.263.4-lts-slim
+    restart: always
+    ports: 
+      - 48080:8080
+    volumes: 
+      - ./volumes/jenkins:/var/jenkins_home
+    networks: 
+      jenkins:
+        ipv4_address: 172.20.0.2
+  ubuntu-worker:
+    image: jenkins-worker-ubuntu:18.04
+    restart: always
+    tty: true
+    networks: 
+      jenkins:
+        ipv4_address: 172.20.0.3
+  node-worker:
+    image: jenkins-worker-node:12.13.0
+    restart: always
+    tty: true
+    networks: 
+      jenkins:
+        ipv4_address: 172.20.0.4
+networks: 
+  jenkins:
+    ipam:
+      config: 
+        - subnet: 172.20.0.0/24

@@ -1,0 +1,25 @@
+{
+  "cat": [
+    {
+      "name": "mairu",
+      "gender": "male"
+    },
+    {
+      "name": "tum dou podium",
+      "gender": "male"
+    }
+  ],
+  "house": {
+    "type": "tee u are sai",
+    "aka": "house-sand-gold",
+    "kon": {
+      "yingLek": "me",
+      "yingYai": "me",
+      "childNoi": "me",
+      "childCenter": "me",
+      "nangPhotjaman": "me",
+      "nangPhotChaNe": "me monk",
+      "momMae": "KIA pai lew"
+    }
+  }
+}
