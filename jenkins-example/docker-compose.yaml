@@ -1,0 +1,48 @@
+version: "3"
+services:
+  jenkins:
+    image: jenkins/jenkins:2.263.4-lts-slim
+    restart: always
+    ports: 
+      - 48080:8080
+    volumes: 
+      - ./volumes/jenkins:/var/jenkins_home
+    networks: 
+      jenkins:
+        ipv4_address: 172.20.0.2
+  worker-1:
+    image: jenkins-worker-ubuntu:18.04
+    restart: always
+    tty: true
+    networks: 
+      jenkins:
+        ipv4_address: 172.20.0.3
+  worker-2:
+    image: jenkins-worker-ubuntu:18.04
+    restart: always
+    tty: true
+    networks: 
+      jenkins:
+        ipv4_address: 172.20.0.4
+  dind:
+    image: dind-worker:20.10.3-dind
+    restart: always
+    privileged: true
+    networks: 
+      jenkins:
+        ipv4_address: 172.20.0.100
+  mirror-registry:
+    image: registry:2
+    restart: always
+    environment: 
+      - REGISTRY_PROXY_REMOTEURL="https://registry-1.docker.io"
+    volumes: 
+      - ./volumes/mirror-registry:/var/lib/registry
+    networks: 
+      jenkins:
+        ipv4_address: 172.20.0.250
+networks: 
+  jenkins:
+    ipam:
+      config: 
+        - subnet: 172.20.0.0/24
