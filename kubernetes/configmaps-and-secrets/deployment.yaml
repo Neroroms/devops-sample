@@ -24,23 +24,23 @@ spec:
             - name: ENV_1
               valueFrom:
                 configMapKeyRef:
-                  key: env-1
                   name: my-configmap-env
+                  key: env-1
             - name: ENV_2
               valueFrom:
                 configMapKeyRef:
-                  key: env-2
                   name: my-configmap-env
+                  key: env-2
             - name: SECRET_ENV_1
               valueFrom:
                 secretKeyRef:
-                  key: secret-env-1
                   name: my-secrets-env
+                  key: secret-env-1
             - name: SECRET_ENV_2
               valueFrom:
                 secretKeyRef:
-                  key: secret-env-2
                   name: my-secrets-env
+                  key: secret-env-2
           volumeMounts:
             - mountPath: /usr/src/app/configmap
               name: configmap-file
