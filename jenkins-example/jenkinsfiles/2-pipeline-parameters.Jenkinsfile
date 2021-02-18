@@ -12,5 +12,12 @@ node("ubuntu-worker") {
     print "multi line param: ${MULTI_LINE_PARAM.getClass()}"
     print "choice param: ${CHOICE_PARAM.getClass()}"
   }
-  
+
+  stage("Multi line param separate") {
+    def multiParam = MULTI_LINE_PARAM.split("\\r?\\n")
+
+    multiParam.each{ data ->
+      print data
+    }
+  }
 }
