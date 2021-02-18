@@ -20,4 +20,25 @@ node("ubuntu-worker") {
       print data
     }
   }
+
+  stage("Show env") {
+    sh "env"
+  }
+
+  stage("Before add env") {
+    try {
+      sh "env | grep madness"
+    }
+    catch (err) {
+      print err
+    }
+  }
+
+  stage("Add env") {
+    env.madness = "This is SPATA!!!!!!!!!!!!!!!!!"
+  }
+
+  stage("Print env") {
+    sh "env | grep madness"
+  }
 }
