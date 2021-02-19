@@ -25,7 +25,7 @@ services:
       jenkins:
         ipv4_address: 172.20.0.4
   i-have-response:
-    image: streamtank/i-have-response:1.0
+    image: streamtank/i-have-response:1.1
     restart: always
     networks: 
       jenkins:
