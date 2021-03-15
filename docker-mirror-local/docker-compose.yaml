@@ -1,0 +1,19 @@
+version: "3"
+services:  
+  docker-mirror-registry:
+    image: registry:2
+    restart: always
+    ports:
+      - 45000:5000
+    environment: 
+      - REGISTRY_PROXY_REMOTEURL=https://registry-1.docker.io
+    volumes:
+      - ./volumes/docker-mirror/:/var/lib/registry
+    networks: 
+      mirror-registry:
+        ipv4_address: 172.20.1.2
+networks: 
+  mirror-registry:
+    ipam:
+      config: 
+        - subnet: 172.20.1.0/24
