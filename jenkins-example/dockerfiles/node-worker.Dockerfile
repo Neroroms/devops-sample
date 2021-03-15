@@ -1,3 +1,4 @@
+#jenkins-worker-node:12.13.0
 FROM node:12.13.0
 
 RUN apt-get update
